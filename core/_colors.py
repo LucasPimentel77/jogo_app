@@ -1,0 +1,13 @@
+AZUL = (0, 128, 255)
+AZUL_CLARO = (173, 216, 230)
+AMARELO = (255, 215, 0)
+VERDE = (0, 255, 0)
+VERMELHO = (255, 0, 0)
+PRETO = (0, 0, 0)
+BRANCO = (255, 255, 255)
+CINZA = (128, 128, 128)
+CINZA_CLARO = (230, 230, 230)
+
+# Adicionando o branco semi-transparente para o filtro
+BRANCO_SEMI_TRANSPARENTE = (255, 255, 255, 100)
+AZUL_ST = (0, 128, 255, 100)
