@@ -29,7 +29,7 @@ class Button:
 
     def draw(self, screen):
         if self.border_color and self.border_thickness > 0:
-            pygame.draw.rect(screen, self.border_color, self.rect, border_radius=10)
+            pygame.draw.rect(screen, self.border_color, self.rect, border_radius=2)
 
         pygame.draw.rect(screen, self.current_color, self.rect, border_radius=10)
         

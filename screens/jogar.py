@@ -11,7 +11,7 @@ def jogar():
 
     retornar = Button(980, 610, 250, 60, "Retornar")
     options = ["Fácil", "Médio", "Difícil"]
-    select_dificuldade = SelectBox(540, 330, 200, 60, options)
+    select_dificuldade = SelectBox(25, 25, 250, 160, options, spacing=10)
 
     buttons = [retornar, select_dificuldade]
     
@@ -28,7 +28,7 @@ def jogar():
 
         buttons = [retornar, select_dificuldade]
         select_dificuldade.add_buttons(buttons)
-        screen.filter()
+        
         screen.draw_button(buttons)
 
     

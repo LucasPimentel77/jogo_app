@@ -3,15 +3,19 @@ from core.UI.button import Button
 from core._colors import AZUL, BRANCO, CINZA, PRETO
 
 class SelectBox(Button):
-    def __init__(self, x, y, w, h, options, bg_color=AZUL, text_color=BRANCO):
+    def __init__(self, x, y, w, h, options, bg_color=AZUL, text_color=BRANCO, mode='down', spacing=0):
         super().__init__(x, y, w, h, options[0], bg_color, text_color)
         self.options = options
         self.qtd_options = len(options)
         self.selected_index = 0
         self.expanded = False
         self.option_height = h
+        self.option_width = w
         self.original_text_color = text_color
         self.buttons_options = []
+
+        self.mode = mode
+        self.spacing = spacing
 
     def draw(self, screen):
         # Desenha a "caixa principal"
@@ -21,10 +25,11 @@ class SelectBox(Button):
 
         if self.expanded and len(self.buttons_options) < self.qtd_options:
             for i, option in enumerate(self.options):
-                x = self.rect.x
-                y = self.rect.y + (i + 1) * self.option_height 
-                w = self.rect.w
-                h = self.option_height
+
+                if self.mode == 'down':
+                    x, y, w, h = self.down_parameters(i)
+                elif self.mode == 'right':
+                    x, y, w, h = self.right_parameters(i)
 
                 text = option if i != self.selected_index else f"> {option} <"
                 cor_fundo = self.bg_color if i != self.selected_index else CINZA
@@ -32,7 +37,7 @@ class SelectBox(Button):
                 op_button = Button(x, y, w, h, text, cor_fundo, self.original_text_color)
 
                 if i == self.selected_index:
-                    op_button.add_border(PRETO, thickness=3)
+                    op_button.add_border(PRETO, thickness=10)
 
                 self.buttons_options.append(op_button)
 
@@ -41,6 +46,22 @@ class SelectBox(Button):
             for botao in self.buttons_options:
                 botao.draw(screen)
 
+    def down_parameters(self, i):
+        x = self.rect.x
+        y = self.rect.y + (i + 1) * self.option_height  + self.spacing * (i+1)
+        w = self.rect.w
+        h = self.option_height
+
+        return x, y, w, h
+    
+    def right_parameters(self, i):
+        x = self.rect.x + (i + 1) * self.option_width + self.spacing * (i+1)
+        y = self.rect.y
+        w = self.rect.w
+        h = self.option_height
+
+        return x, y, w, h
+    
     def add_buttons(self, buttons):
         if self.expanded:
             buttons.extend(self.buttons_options)
@@ -67,3 +88,5 @@ class SelectBox(Button):
 
     def get_selected(self):
         return self.options[self.selected_index]
+    
+    

@@ -2,7 +2,7 @@ import pygame
 from core._colors import BRANCO_SEMI_TRANSPARENTE
 
 class Screen:
-    def __init__(self, titulo='Matemática Básica', fundo_path='fundo_app.png'):
+    def __init__(self, titulo='Matemática Básica', fundo_path='images/fundo_app.png'):
         self.largura = 1280
         self.altura = 720
         self.titulo = titulo
