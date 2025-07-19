@@ -2,17 +2,25 @@ import pygame
 from core._colors import BRANCO_SEMI_TRANSPARENTE
 
 class Screen:
-    def __init__(self, titulo='Matemática Básica', fundo_path='images/fundo_app.png'):
+    def __init__(self, titulo='Matemática Básica', fundo_path='images/fundo_app.png', fundo=None):
         self.largura = 1280
         self.altura = 720
         self.titulo = titulo
+        self.x = 0
+        self.y = 0
 
         pygame.init()
         self.screen = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption(self.titulo)
 
-        self.fundo = pygame.image.load(fundo_path)
+        self.fundo = pygame.image.load(fundo_path) if not fundo else fundo
         self.screen.blit(self.fundo, (0, 0))
+        
+    def config(self, x=0, y=0, largura=1280, altura=720):
+        self.x = x
+        self.y = y
+        self.largura = largura
+        self.altura = altura
 
     def draw_background(self):
         """Desenha o fundo da tela."""

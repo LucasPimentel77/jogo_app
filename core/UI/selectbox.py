@@ -1,10 +1,11 @@
 import pygame
 from core.UI.button import Button
-from core._colors import AZUL, BRANCO, CINZA, PRETO
+from core._colors import AZUL, BRANCO, CINZA, PRETO, VERMELHO
 
 class SelectBox(Button):
     def __init__(self, x, y, w, h, options, bg_color=AZUL, text_color=BRANCO, mode='down', spacing=0):
-        super().__init__(x, y, w, h, options[0], bg_color, text_color)
+        super().__init__(x, y, w, h, options[0], VERMELHO, text_color)
+        self.add_border(PRETO, thickness=4)
         self.options = options
         self.qtd_options = len(options)
         self.selected_index = 0
@@ -13,6 +14,8 @@ class SelectBox(Button):
         self.option_width = w
         self.original_text_color = text_color
         self.buttons_options = []
+
+        self.bg_color = bg_color
 
         self.mode = mode
         self.spacing = spacing
@@ -35,9 +38,6 @@ class SelectBox(Button):
                 cor_fundo = self.bg_color if i != self.selected_index else CINZA
 
                 op_button = Button(x, y, w, h, text, cor_fundo, self.original_text_color)
-
-                if i == self.selected_index:
-                    op_button.add_border(PRETO, thickness=10)
 
                 self.buttons_options.append(op_button)
 

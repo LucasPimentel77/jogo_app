@@ -10,4 +10,5 @@ CINZA_CLARO = (230, 230, 230)
 
 # Adicionando o branco semi-transparente para o filtro
 BRANCO_SEMI_TRANSPARENTE = (255, 255, 255, 100)
+BRANCO70 = (255, 255, 255, 180)
 AZUL_ST = (0, 128, 255, 100)

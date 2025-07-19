@@ -23,15 +23,15 @@ class Button:
             self.text_color = self.original_text_color
 
     def add_border(self, color, thickness=2):
-        if self.border_color and self.border_thickness:
             self.border_color = color
             self.border_thickness = thickness
 
     def draw(self, screen):
         if self.border_color and self.border_thickness > 0:
-            pygame.draw.rect(screen, self.border_color, self.rect, border_radius=2)
+            pygame.draw.rect(screen, self.border_color, self.rect, width=self.border_thickness, border_radius=10)
 
-        pygame.draw.rect(screen, self.current_color, self.rect, border_radius=10)
+        inner_rect = self.rect.inflate(-self.border_thickness * 2, -self.border_thickness * 2)
+        pygame.draw.rect(screen, self.current_color, inner_rect, border_radius=8)
         
         text_surface = self.font.render(self.text, True, self.text_color)
         text_rect = text_surface.get_rect(center=self.rect.center)
