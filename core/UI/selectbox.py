@@ -20,25 +20,28 @@ class SelectBox(Button):
         self.mode = mode
         self.spacing = spacing
 
+    def update_hover(self, mouse_pos):
+        super().update_hover(mouse_pos)
+        if self.expanded:
+            for botao in self.buttons_options:
+                botao.update_hover(mouse_pos)
+
     def draw(self, screen):
         # Desenha a "caixa principal"
         super().draw(screen)
 
         # Desenha as opções se estiver expandido
 
-        if self.expanded and len(self.buttons_options) < self.qtd_options:
+        if self.expanded:
+            self.buttons_options.clear()  # Limpa os antigos
             for i, option in enumerate(self.options):
-
                 if self.mode == 'down':
                     x, y, w, h = self.down_parameters(i)
                 elif self.mode == 'right':
                     x, y, w, h = self.right_parameters(i)
 
-                text = option if i != self.selected_index else f"> {option} <"
                 cor_fundo = self.bg_color if i != self.selected_index else CINZA
-
-                op_button = Button(x, y, w, h, text, cor_fundo, self.original_text_color)
-
+                op_button = Button(x, y, w, h, option, cor_fundo, self.original_text_color)
                 self.buttons_options.append(op_button)
 
         # DESENHA os botões toda vez que expandido
@@ -82,9 +85,11 @@ class SelectBox(Button):
                         self.selected_index = i
                         self.text = self.options[i]  # Atualiza texto principal
                         self.expanded = False
+                        return self.options[i]  # Retorna a opção selecionada
                         break
                 else:
                     self.expanded = False
+            
 
     def get_selected(self):
         return self.options[self.selected_index]

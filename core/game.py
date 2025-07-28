@@ -1,10 +1,11 @@
-from screens import menu, jogar
+from screens import menu, jogar, perguntas
 
 class Game:
     def __init__(self):
         self.telas = {
             "menu": menu.tela_menu,
-            "jogar": jogar.jogar
+            "jogar": jogar.jogar,
+            "jogo": perguntas.perguntas
             # No futuro, adicione outras: "jogo": tela_jogo, "ranking": tela_ranking, etc
         }
 
