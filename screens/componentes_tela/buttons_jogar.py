@@ -1,5 +1,14 @@
 from core.UI.button import Button
 from core.UI.selectbox import SelectBox
+from core._colors import VERDE
+
+def get_categorias():
+    return {
+        "fácil": [("➕", "Adição"), ("➖", "Subtração"), ("✖️", "Multiplicação"), ("➗", "Divisão")],
+        "médio": [("🔢", "Fração"), ("📏", "MMC"), ("🔀", "Regra de 3"), ("📊", "Porcentagem")],
+        "difícil": [("🎲", "Probabilidade"), ("📈", "Potencia"), ("📐", "Geometria plana"), ("📦", "Geometria espacial")]
+    }
+     
 
 def buttons_jogar():
     jogar = {}
@@ -15,10 +24,14 @@ def buttons_jogar():
     jogar['categoria3'] = Button(x + largura + espaco, y, largura, altura, "Categoria 3")
     jogar['categoria4'] = Button(x + largura + espaco, y + altura + espaco, largura, altura, "Categoria 4")
 
-    categorias = {
-        "fácil": [("➕", "Adição"), ("➖", "Subtração"), ("✖️", "Multiplicação"), ("➗", "Divisão")],
-        "médio": [("🔢", "Fração"), ("📏", "MMC"), ("🔀", "Regra de 3"), ("📊", "Porcentagem")],
-        "difícil": [("🎲", "Probabilidade"), ("📈", "Potencia"), ("📐", "Geometria plana"), ("📦", "Geometria espacial")]
-    }
+    categorias = get_categorias()
 
     return jogar, categorias
+
+def buttons_perguntas():
+    botoes = {}
+    botoes['nivel'] = Button(15, 15, 250, 60, "Nivel", VERDE)
+    botoes["retornar"] = Button(15, 610, 250, 60, "Retornar")
+    botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar")
+
+    return botoes

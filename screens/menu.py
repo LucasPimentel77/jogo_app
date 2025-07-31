@@ -3,7 +3,7 @@ from core.UI.button import Button
 from core.screen import Screen
 from core._colors import AMARELO, AZUL_CLARO, PRETO
 
-def tela_menu():
+def tela_menu(args=None):
     screen = Screen()
     clock = pygame.time.Clock()
     largura = screen.largura
@@ -31,10 +31,10 @@ def tela_menu():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if jogar.is_clicked(event.pos):
                     print("Botão Jogar clicado!")
-                    return "jogar"  # substitua por outra tela real quando tiver
+                    return "jogar", None  # substitua por outra tela real quando tiver
                 elif aprender.is_clicked(event.pos):
                     print("Botão Aprender clicado!")
-                    return "aprender"
+                    return "aprender", None
 
         screen.filter()
         screen.draw_button(buttons)

@@ -24,10 +24,7 @@ def get_categorias(buttons, pos):
             return buttons[f"categoria{i}"].text
             
     
-            
-
-
-def jogar():
+def jogar(args=None):
     pygame.init()
     screen = Screen()  # Tela principal
     clock = pygame.time.Clock()
@@ -56,14 +53,15 @@ def jogar():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if buttons["retornar"].is_clicked(event.pos):
-                    return "menu"
-                if buttons["jogar"].is_clicked(event.pos):
-                    return "jogo"
                 base = get_categorias(buttons,event.pos)
+                if buttons["retornar"].is_clicked(event.pos):
+                    return "menu", None
+                if buttons["jogar"].is_clicked(event.pos):
+                    print(base)
+                    return "jogo", base
                 buttons["select_dificuldade"].handle_event(event)
 
-        print(base)
+    
         # 🧠 Obter dificuldade atual e atualizar os botões de categoria
         dificuldade = buttons["select_dificuldade"].get_selected().lower()
         categorias_dificuldade = categorias.get(dificuldade, [])

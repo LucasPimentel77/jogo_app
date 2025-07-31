@@ -26,7 +26,7 @@ def gerar_perguntas(modulo):
     
     lista = listar_categorias()
     
-    if modulo == 'adição':
+    if modulo == 'Adição':
         text = f'qual a soma de {a} + {b}?'
         for i in range(4):
             option = random.randint(a + b - 5, a + b +5)
@@ -35,5 +35,38 @@ def gerar_perguntas(modulo):
         random.shuffle(options)
         
         return text, options
+
+    elif modulo == 'Subtração':
+        text = f'qual a subtração de {a} - {b}?'
+        for i in range(4):
+            option = random.randint(a - b - 5, a - b + 5)
+            options.append(option)
+        options.append(a - b)
+        random.shuffle(options)
+        return text, options
+
+    elif modulo == 'Multiplicação':
+        text = f'qual o produto de {a} x {b}?'
+        for i in range(4):
+            option = random.randint(a * b - 20, a * b + 20)
+            options.append(option)
+        options.append(a * b)
+        random.shuffle(options)
+        return text, options
+
+    elif modulo == 'Divisão':
+        # Para evitar divisão por zero e garantir resultado inteiro
+        divisor = random.randint(2, 12)
+        resultado = random.randint(2, 12)
+        dividendo = divisor * resultado
+        text = f'qual o resultado de {dividendo} ÷ {divisor}?'
+        for i in range(4):
+            option = random.randint(resultado - 3, resultado + 3)
+            options.append(option)
+        options.append(resultado)
+        random.shuffle(options)
+        return text, options
+    
+    return f"Erro ao gerar pergunta - {modulo}", ["A", "B", "C", "D"]
         
    

@@ -11,12 +11,14 @@ class Game:
 
     def run(self):
         tela_atual = "menu"
+        args = None
 
         while tela_atual:
             funcao_tela = self.telas.get(tela_atual)
             if funcao_tela:
-                proxima_tela = funcao_tela()
+                proxima_tela, argumentos = funcao_tela(args)
                 tela_atual = proxima_tela
+                args = argumentos
             else:
                 print(f"Erro: tela '{tela_atual}' não encontrada.")
                 break
