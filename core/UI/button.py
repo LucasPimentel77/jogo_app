@@ -10,6 +10,7 @@ class Button:
         self.text_color = text_color
         self.original_text_color = text_color
         self.current_color = bg_color  # cor que será desenhada
+        self.clicked = False
 
         self.border_color = None
         self.border_thickness = 0
@@ -71,4 +72,9 @@ class Button:
             self._draw_singleline(screen)
 
     def is_clicked(self, pos):
+        self.clicked = True
+        return self.rect.collidepoint(pos)
+    
+    def disclicked(self, pos):
+        self.clicked = False
         return self.rect.collidepoint(pos)

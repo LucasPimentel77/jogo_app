@@ -1,7 +1,7 @@
 import pygame
 from core.screen import Screen
-from screens.componentes import buttons_jogar
-from core._colors import BRANCO70
+from screens.componentes_tela.buttons_jogar import buttons_jogar
+from core._colors import BRANCO70, VERMELHO
 
 def get_all_buttons(buttons):
     list_buttons = list(buttons.values())
@@ -13,6 +13,18 @@ def set_text(categorias, buttons):
         symbol, label = categoria  # Desempacota a tupla
         buttons[f"categoria{i+1}"].set_text(label)
         buttons[f"categoria{i+1}"].set_multiline(symbol=symbol, label=label)
+        
+def get_categorias(buttons, pos):
+    for i in range(1, 5):
+        if buttons[f"categoria{i}"].is_clicked(pos):
+            buttons[f"categoria{i}"].add_border(VERMELHO)
+            for j in range(1, 5):
+                if j != i:
+                    buttons[f"categoria{i}"].add_border(VERMELHO, 3)
+            return buttons[f"categoria{i}"].text
+            
+    
+            
 
 
 def jogar():
@@ -26,9 +38,12 @@ def jogar():
     quadro_surface.fill(BRANCO70)
 
     buttons, categorias = buttons_jogar()
+    
+    base = None
 
     while running:
         screen.draw_background()
+        
 
         # Desenhar quadro por cima do fundo
         screen.screen.blit(quadro_surface, (270, 20))
@@ -45,12 +60,12 @@ def jogar():
                     return "menu"
                 if buttons["jogar"].is_clicked(event.pos):
                     return "jogo"
+                base = get_categorias(buttons,event.pos)
                 buttons["select_dificuldade"].handle_event(event)
 
-
+        print(base)
         # 🧠 Obter dificuldade atual e atualizar os botões de categoria
         dificuldade = buttons["select_dificuldade"].get_selected().lower()
-        print(f"Dificuldade selecionada: {dificuldade}")
         categorias_dificuldade = categorias.get(dificuldade, [])
         set_text(categorias_dificuldade, buttons)
 
