@@ -18,9 +18,6 @@ def get_categorias(buttons, pos):
     for i in range(1, 5):
         if buttons[f"categoria{i}"].is_clicked(pos):
             buttons[f"categoria{i}"].add_border(VERMELHO)
-            for j in range(1, 5):
-                if j != i:
-                    buttons[f"categoria{i}"].add_border(VERMELHO, 3)
             return buttons[f"categoria{i}"].text
             
     
@@ -36,7 +33,7 @@ def jogar(args=None):
 
     buttons, categorias = buttons_jogar()
     
-    base = None
+    modulo = None
 
     while running:
         screen.draw_background()
@@ -53,12 +50,21 @@ def jogar(args=None):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                base = get_categorias(buttons,event.pos)
+                categoria_selecionada = get_categorias(buttons, event.pos)
+                if categoria_selecionada:
+                    modulo = categoria_selecionada
+                    print(f'Categoria selecionada: {modulo}')
+            
+                print(f'ola {modulo}')
                 if buttons["retornar"].is_clicked(event.pos):
                     return "menu", None
                 if buttons["jogar"].is_clicked(event.pos):
-                    print(base)
-                    return "jogo", base
+                    if not modulo:
+                        print("Selecione uma categoria antes de jogar.")
+                        continue
+                    else:
+                        print(f"Jogando na categoria: {modulo}")
+                        return "jogo", modulo
                 buttons["select_dificuldade"].handle_event(event)
 
     

@@ -1,15 +1,20 @@
 import pygame
-from core._colors import BRANCO
+from core._colors import BRANCO, VERMELHO
 from core.UI.button import Button
 
 class question:
-    def __init__(self, text, options):
+    def __init__(self, text, options, correct=None):
         self.text = text
         self.options = options
+        self.buttons_options = [
+            Button(390, 290 + i*100 + 5*i, 500, 100, option)
+            for i, option in enumerate(options)
+        ]
         self.level = None
         self.module = None
-        self.correct = None
+        self.correct = correct
         self.selected_index = 0
+        self.screen = None
 
     def get_selected(self):
         return self.options[self.selected_index]
@@ -27,12 +32,20 @@ class question:
         screen.screen.blit(text_surface, (390, 140))
 
     def draw_options(self, screen):
-        for i, option in enumerate(self.options):
-            op = Button(390, 275 + i*100, 500, 100, option)
-            screen.draw_button([op])
+        screen.draw_button(self.buttons_options)
         
     
     def draw(self, screen):
+        self.screen = screen
         self.draw_question(screen)
         self.draw_options(screen)
 
+    def get_option(self, pos):
+        for i in range(len(self.options)):
+            if self.buttons_options[i].is_clicked(pos):
+                self.buttons_options[i].add_border(VERMELHO)
+                self.selected_index = i
+
+                self.draw_options(self.screen)
+                return self.get_selected()
+        

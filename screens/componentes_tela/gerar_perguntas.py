@@ -28,31 +28,31 @@ def gerar_perguntas(modulo):
     
     if modulo == 'Adição':
         text = f'qual a soma de {a} + {b}?'
-        for i in range(4):
+        for i in range(3):
             option = random.randint(a + b - 5, a + b +5)
-            options.append(option)
-        options.append(a+b)
+            options.append(str(option))
+        options.append(str(a+b))
         random.shuffle(options)
         
-        return text, options
+        return text, options, str(a+b)
 
     elif modulo == 'Subtração':
         text = f'qual a subtração de {a} - {b}?'
-        for i in range(4):
+        for i in range(3):
             option = random.randint(a - b - 5, a - b + 5)
-            options.append(option)
-        options.append(a - b)
+            options.append(str(option))
+        options.append(str(a - b))
         random.shuffle(options)
-        return text, options
+        return text, options, str(a-b)
 
     elif modulo == 'Multiplicação':
         text = f'qual o produto de {a} x {b}?'
-        for i in range(4):
+        for i in range(3):
             option = random.randint(a * b - 20, a * b + 20)
-            options.append(option)
-        options.append(a * b)
+            options.append(str(option))
+        options.append(str(a * b))
         random.shuffle(options)
-        return text, options
+        return text, options, str(a*b)
 
     elif modulo == 'Divisão':
         # Para evitar divisão por zero e garantir resultado inteiro
@@ -60,12 +60,12 @@ def gerar_perguntas(modulo):
         resultado = random.randint(2, 12)
         dividendo = divisor * resultado
         text = f'qual o resultado de {dividendo} ÷ {divisor}?'
-        for i in range(4):
+        for i in range(3):
             option = random.randint(resultado - 3, resultado + 3)
-            options.append(option)
-        options.append(resultado)
+            options.append(str(option))
+        options.append(str(resultado))
         random.shuffle(options)
-        return text, options
+        return text, options, str(resultado)
     
     return f"Erro ao gerar pergunta - {modulo}", ["A", "B", "C", "D"]
         
