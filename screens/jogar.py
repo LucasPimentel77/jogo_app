@@ -33,9 +33,12 @@ def jogar(args=None):
 
     buttons, categorias = buttons_jogar()
     
+    args = {}
+    
     modulo = None
 
     while running:
+
         screen.draw_background()
         
 
@@ -63,8 +66,11 @@ def jogar(args=None):
                         print("Selecione uma categoria antes de jogar.")
                         continue
                     else:
+                        args['numero'] = "1"
+                        args['modulo'] = modulo
+                        args['nivel'] = "nivel"
                         print(f"Jogando na categoria: {modulo}")
-                        return "jogo", modulo
+                        return "jogo", args
                 buttons["select_dificuldade"].handle_event(event)
 
     

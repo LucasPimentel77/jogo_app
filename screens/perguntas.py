@@ -4,11 +4,15 @@ from core.question import question
 from screens.componentes_tela.buttons_jogar import buttons_perguntas
 from screens.componentes_tela.gerar_perguntas import gerar_perguntas
 
-def perguntas(modulo):
-    botoes = buttons_perguntas()
+def perguntas(args):
+    number = args['numero']
+    modulo = args['modulo']
+    nivel = args['nivel']
+    
+    botoes = buttons_perguntas(number,nivel)
     text, options, correta = gerar_perguntas(modulo)
 
-    questao = question(text, options, correta)
+    questao = question(text, options, correta, number=int(number))
     print(f'Pergunta gerada: {text} com opções {options}')
     
     pygame.init()
@@ -19,6 +23,8 @@ def perguntas(modulo):
     while running:
         screen.draw_background()
         questao.draw(screen)
+        
+        botoes['numero'].set_text(f'{number}/10')
 
         # Eventos
         for event in pygame.event.get():
@@ -28,7 +34,8 @@ def perguntas(modulo):
                 if botoes['retornar'].is_clicked(event.pos):
                     return "menu", None
                 if botoes['confirmar'].is_clicked(event.pos):
-                    return "jogo", modulo
+                    args['numero'] = questao.add_number()
+                    return "jogo", args
                 
                 option = questao.get_option(event.pos)
                 if option:

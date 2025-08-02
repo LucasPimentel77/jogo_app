@@ -1,6 +1,7 @@
 from core.UI.button import Button
 from core.UI.selectbox import SelectBox
-from core._colors import VERDE
+from core.UI.square import Square
+from core._colors import VERDE, VERMELHO
 
 def get_categorias():
     return {
@@ -28,10 +29,28 @@ def buttons_jogar():
 
     return jogar, categorias
 
-def buttons_perguntas():
+def buttons_perguntas(number, nivel):
+    
+    dicionario = get_categorias()
+    
+   
+
+    for nivel, conteudo in dicionario.items():
+        print(nivel)
+        print(conteudo)
+            # for modulo in nivel:
+            #     print(f'\n\n{modulo}\n\n')
+            #     if modulo == modulo_selecionado:
+            #         nivel_selecionado = nivel
+    
+    
+    
+                
+                
     botoes = {}
-    botoes['nivel'] = Button(15, 15, 250, 60, "Nivel", VERDE)
+    botoes['nivel'] = Button(15, 15, 250, 60, nivel, VERDE)
     botoes["retornar"] = Button(15, 610, 250, 60, "Retornar")
-    botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar")
+    botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar", VERMELHO)
+    botoes["numero"] = Square(15,200, 250, 60, f"{number}/10")
 
     return botoes

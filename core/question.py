@@ -3,7 +3,7 @@ from core._colors import BRANCO, VERMELHO
 from core.UI.button import Button
 
 class question:
-    def __init__(self, text, options, correct=None):
+    def __init__(self, text, options, correct=None, number=1):
         self.text = text
         self.options = options
         self.buttons_options = [
@@ -15,6 +15,7 @@ class question:
         self.correct = correct
         self.selected_index = 0
         self.screen = None
+        self.number = number
 
     def get_selected(self):
         return self.options[self.selected_index]
@@ -48,4 +49,13 @@ class question:
 
                 self.draw_options(self.screen)
                 return self.get_selected()
+            
+    def add_number(self):
+        if self.number < 10:
+           self.number += 1
+        else:
+            self.number = 0
+            
+        return str(self.number)
+        
         

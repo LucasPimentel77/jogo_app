@@ -1,5 +1,3 @@
-from screens.componentes_tela.gerar_perguntas import gerar_perguntas
+from screens.componentes_tela.buttons_jogar import buttons_perguntas
 
-texto, opcoes = gerar_perguntas('adição')
-
-print(f'{texto}\n\n{opcoes}')
+buttons_perguntas("1","2")
