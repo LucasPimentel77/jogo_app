@@ -59,6 +59,10 @@ class Button:
             self.border_color = color
             self.border_thickness = thickness
 
+    def remove_border(self):
+        self.border_color = None
+        self.border_thickness = 0
+
     def draw(self, screen):
         if self.border_color and self.border_thickness > 0:
             pygame.draw.rect(screen, self.border_color, self.rect, width=self.border_thickness, border_radius=10)

@@ -68,7 +68,6 @@ def jogar(args=None):
                     else:
                         args['numero'] = "1"
                         args['modulo'] = modulo
-                        args['nivel'] = "nivel"
                         print(f"Jogando na categoria: {modulo}")
                         return "jogo", args
                 buttons["select_dificuldade"].handle_event(event)

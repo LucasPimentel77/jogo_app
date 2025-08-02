@@ -1,5 +1,5 @@
 import pygame
-from core._colors import BRANCO, VERMELHO
+from core._colors import BRANCO, VERMELHO, AZUL, AZUL_CLARO,VERDE
 from core.UI.button import Button
 
 class question:
@@ -44,7 +44,13 @@ class question:
     def get_option(self, pos):
         for i in range(len(self.options)):
             if self.buttons_options[i].is_clicked(pos):
-                self.buttons_options[i].add_border(VERMELHO)
+
+                for j in range(len(self.options)):
+                    self.buttons_options[j].remove_border()
+                    self.buttons_options[j].bg_color = AZUL
+
+                self.buttons_options[i].add_border(VERMELHO, 4)
+                self.buttons_options[i].bg_color = AZUL_CLARO
                 self.selected_index = i
 
                 self.draw_options(self.screen)
@@ -58,4 +64,8 @@ class question:
             
         return str(self.number)
         
+    def paint_correct(self):
+        for option in self.buttons_options:
+            if option.text == self.correct:
+                option.bg_color = VERDE
         

@@ -7,9 +7,11 @@ from screens.componentes_tela.gerar_perguntas import gerar_perguntas
 def perguntas(args):
     number = args['numero']
     modulo = args['modulo']
-    nivel = args['nivel']
+
+    esperando = False
+    tempo_espera = 0
     
-    botoes = buttons_perguntas(number,nivel)
+    botoes = buttons_perguntas(number,modulo)
     text, options, correta = gerar_perguntas(modulo)
 
     questao = question(text, options, correta, number=int(number))
@@ -30,12 +32,18 @@ def perguntas(args):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN and not esperando:
                 if botoes['retornar'].is_clicked(event.pos):
                     return "menu", None
                 if botoes['confirmar'].is_clicked(event.pos):
+                    esperando = True
+                    tempo_espera = pygame.time.get_ticks()
+
+
+                    questao.paint_correct()
                     args['numero'] = questao.add_number()
-                    return "jogo", args
+
+
                 
                 option = questao.get_option(event.pos)
                 if option:
@@ -45,6 +53,9 @@ def perguntas(args):
                     else:
                         print(f"Resposta incorreta!\nR: {questao.correct}")
 
+        if esperando and pygame.time.get_ticks() - tempo_espera > 2000:
+            return "jogo", args
+        
         list_buttons = list(botoes.values())
         screen.draw_button(list_buttons)
         pygame.display.flip()
