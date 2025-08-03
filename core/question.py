@@ -12,16 +12,17 @@ class question:
         ]
         self.level = None
         self.module = None
-        self.correct = correct
+        self.correct_alternative = correct
         self.selected_index = 0
         self.screen = None
         self.number = number
+        self.correct = None
 
     def get_selected(self):
         return self.options[self.selected_index]
     
     def is_correct(self):
-        return self.get_selected() == self.correct
+        return self.get_selected() == self.correct_alternative
     
     def draw_question(self, screen):
         quadro_surface = pygame.Surface((500, 250), pygame.SRCALPHA)
@@ -66,8 +67,17 @@ class question:
         
     def paint_correct(self):
         for option in self.buttons_options:
-            if option.text == self.correct:
+            if option.text == self.correct_alternative:
                 option.bg_color = VERDE
 
-    def paint_questions()
+    def paint_questions(self, options):
+        if self.is_correct():
+            options[self.number - 1][0] = "O"
+            options[self.number - 1][1] = VERDE
+        else:
+            options[self.number - 1][0] = "X"
+            options[self.number - 1][1] = VERMELHO
+
+        return options
+
         

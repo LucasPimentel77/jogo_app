@@ -29,7 +29,7 @@ def buttons_jogar():
 
     return jogar, categorias
 
-def buttons_perguntas(number, modulo_escolhido):
+def buttons_perguntas(number, modulo_escolhido, cores):
     
     dicionario = get_categorias()
 
@@ -46,14 +46,14 @@ def buttons_perguntas(number, modulo_escolhido):
     botoes = {}
     botoes['nivel'] = Button(15, 15, 250, 60, nivel_escolhido, VERDE)
     botoes["retornar"] = Button(15, 610, 250, 60, "Retornar")
-    # botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar", VERMELHO)
+    botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar", VERMELHO)
     botoes["numero"] = Square(15,200, 250, 60, f"{number}/10")
     botoes["quadro"] = Square(900, 10, 365, 700, "",AZUL_CLARO)
 
     for i in range(1, 6):
-        botoes[f"opcao{i}"] = Square(925 + (i-1)*70, 250, 50, 50, f"")
+        botoes[f"questao{i}"] = Square(925 + (i-1)*70, 250, 50, 50, cores[i-1][0], cores[i-1][1] )
     
     for i in range(6, 11):
-        botoes[f"opcao{i}"] = Square(925 + (i-6)*70, 320, 50, 50, f"")
+        botoes[f"questao{i}"] = Square(925 + (i-6)*70, 320, 50, 50, cores[i-1][0], cores[i-1][1])
 
     return botoes
