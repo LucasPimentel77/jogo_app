@@ -68,4 +68,6 @@ class question:
         for option in self.buttons_options:
             if option.text == self.correct:
                 option.bg_color = VERDE
+
+    def paint_questions()
         

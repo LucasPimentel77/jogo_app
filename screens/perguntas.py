@@ -1,6 +1,7 @@
 import pygame
 from core.screen import Screen
 from core.question import question
+from core.UI.button import Button
 from screens.componentes_tela.buttons_jogar import buttons_perguntas
 from screens.componentes_tela.gerar_perguntas import gerar_perguntas
 
@@ -33,27 +34,24 @@ def perguntas(args):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN and not esperando:
-                if botoes['retornar'].is_clicked(event.pos):
-                    return "menu", None
-                if botoes['confirmar'].is_clicked(event.pos):
-                    esperando = True
-                    tempo_espera = pygame.time.get_ticks()
-
-
-                    questao.paint_correct()
-                    args['numero'] = questao.add_number()
-
-
                 
                 option = questao.get_option(event.pos)
                 if option:
-                    print(f'Opção selecionada: {option}')
-                    if questao.is_correct():
-                        print("Resposta correta!")
-                    else:
-                        print(f"Resposta incorreta!\nR: {questao.correct}")
+                    botoes["confirmar"] = Button(980, 580, 250, 60, "Confirmar")
+                
+                if botoes['retornar'].is_clicked(event.pos):
+                    return "menu", None
+                if botoes['confirmar']:
+                    if botoes['confirmar'].is_clicked(event.pos):
+                        esperando = True
+                        tempo_espera = pygame.time.get_ticks()
 
-        if esperando and pygame.time.get_ticks() - tempo_espera > 2000:
+
+                        questao.paint_correct()
+                        args['numero'] = questao.add_number()
+
+
+        if esperando and pygame.time.get_ticks() - tempo_espera > 500:
             return "jogo", args
         
         list_buttons = list(botoes.values())

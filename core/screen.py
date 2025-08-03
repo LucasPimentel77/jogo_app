@@ -1,5 +1,7 @@
 import pygame
-from core._colors import BRANCO_SEMI_TRANSPARENTE
+from core._colors import translucent_color, BRANCO
+
+branco_semi_transparente = translucent_color(BRANCO, 100)
 
 class Screen:
     def __init__(self, titulo='Matemática Básica', fundo_path='images/fundo_app.png', fundo=None):
@@ -26,7 +28,7 @@ class Screen:
         """Desenha o fundo da tela."""
         self.screen.blit(self.fundo, (0, 0))
 
-    def filter(self, collor=BRANCO_SEMI_TRANSPARENTE):
+    def filter(self, collor=branco_semi_transparente):
         self.screen.blit(self.fundo, (0, 0))
         filtro = pygame.Surface((self.largura, self.altura), pygame.SRCALPHA)
         filtro.fill(collor)

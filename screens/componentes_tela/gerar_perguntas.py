@@ -17,55 +17,90 @@ def listar_categorias():
             lista_categorias.append(modulo[1])
             
     return lista_categorias
+
+def verifica_lista(lista, valor):
+    if valor in lista or int(valor) < 0:
+        return False
+    return True
+
+def ordena_valor(a, b):
+    if a <= b:
+        return b, a
+    return a, b
     
 
 def gerar_perguntas(modulo):
     a = random.randint(10, 99)
     b = random.randint(10, 99)
+
+    c = random.randint(2,10)
+    d = random.randint(2,10)
     options = []
     
     lista = listar_categorias()
     
     if modulo == 'Adição':
-        text = f'qual a soma de {a} + {b}?'
-        for i in range(3):
-            option = random.randint(a + b - 5, a + b +5)
-            options.append(str(option))
-        options.append(str(a+b))
+        resposta = a + b
+
+        text = f'qual o resultado de {a} + {b}?'
+        options.append(str(resposta))
+        
+        while len(options) < 4:
+            option = random.randint(resposta - 5, resposta +5)
+            if verifica_lista(options, str(option)):
+                options.append(str(option))
+
         random.shuffle(options)
         
-        return text, options, str(a+b)
+        return text, options, str(resposta)
 
     elif modulo == 'Subtração':
-        text = f'qual a subtração de {a} - {b}?'
-        for i in range(3):
-            option = random.randint(a - b - 5, a - b + 5)
-            options.append(str(option))
-        options.append(str(a - b))
+        a, b = ordena_valor(a, b)
+        resposta = a - b
+
+        text = f'qual o resultado de {a} - {b}?'
+        options.append(str(resposta))
+            
+        while len(options) < 4:
+            option = random.randint(resposta - 5, resposta + 5)
+            if verifica_lista(options, str(option)):
+                options.append(str(option))
+
         random.shuffle(options)
-        return text, options, str(a-b)
+            
+        return text, options, str(resposta)
+
 
     elif modulo == 'Multiplicação':
-        text = f'qual o produto de {a} x {b}?'
-        for i in range(3):
-            option = random.randint(a * b - 20, a * b + 20)
-            options.append(str(option))
-        options.append(str(a * b))
+        resposta = c * d
+
+        text = f'qual o resultado de {c} * {d}?'
+        options.append(str(resposta))
+            
+        while len(options) < 4:
+            option = random.randint(resposta - 5, resposta + 5)
+            if verifica_lista(options, str(option)):
+                options.append(str(option))
+
         random.shuffle(options)
-        return text, options, str(a*b)
+
+        return text, options, str(resposta)
 
     elif modulo == 'Divisão':
-        # Para evitar divisão por zero e garantir resultado inteiro
-        divisor = random.randint(2, 12)
-        resultado = random.randint(2, 12)
-        dividendo = divisor * resultado
-        text = f'qual o resultado de {dividendo} ÷ {divisor}?'
-        for i in range(3):
-            option = random.randint(resultado - 3, resultado + 3)
-            options.append(str(option))
-        options.append(str(resultado))
+        resposta = d
+        dividendo = c * d
+
+        text = f'qual o resultado de {dividendo} / {c}?'
+        options.append(str(resposta))
+            
+        while len(options) < 4:
+            option = random.randint(resposta - 3, resposta + 3)
+            if verifica_lista(options, str(option)):
+                options.append(str(option))
+
         random.shuffle(options)
-        return text, options, str(resultado)
+        
+        return text, options, str(resposta)
     
     return f"Erro ao gerar pergunta - {modulo}", ["A", "B", "C", "D"]
         

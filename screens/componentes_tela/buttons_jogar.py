@@ -1,7 +1,7 @@
 from core.UI.button import Button
 from core.UI.selectbox import SelectBox
 from core.UI.square import Square
-from core._colors import VERDE, VERMELHO
+from core._colors import VERDE, VERMELHO, AZUL_CLARO
 
 def get_categorias():
     return {
@@ -41,14 +41,19 @@ def buttons_perguntas(number, modulo_escolhido):
             if modulo[1] == modulo_escolhido:
                 nivel_escolhido = nivel
     
-    
-    
-                
+             
                 
     botoes = {}
     botoes['nivel'] = Button(15, 15, 250, 60, nivel_escolhido, VERDE)
     botoes["retornar"] = Button(15, 610, 250, 60, "Retornar")
-    botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar", VERMELHO)
+    # botoes["confirmar"] = Button(980, 610, 250, 60, "Confirmar", VERMELHO)
     botoes["numero"] = Square(15,200, 250, 60, f"{number}/10")
+    botoes["quadro"] = Square(900, 10, 365, 700, "",AZUL_CLARO)
+
+    for i in range(1, 6):
+        botoes[f"opcao{i}"] = Square(925 + (i-1)*70, 250, 50, 50, f"")
+    
+    for i in range(6, 11):
+        botoes[f"opcao{i}"] = Square(925 + (i-6)*70, 320, 50, 50, f"")
 
     return botoes

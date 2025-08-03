@@ -1,7 +1,9 @@
 import pygame
 from core.screen import Screen
 from screens.componentes_tela.buttons_jogar import buttons_jogar
-from core._colors import BRANCO70, VERMELHO
+from core._colors import BRANCO, VERMELHO, translucent_color
+
+BRANCO70 = translucent_color(BRANCO, 180)
 
 def get_all_buttons(buttons):
     list_buttons = list(buttons.values())
