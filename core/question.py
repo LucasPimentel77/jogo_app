@@ -1,6 +1,7 @@
 import pygame
-from core._colors import BRANCO, VERMELHO, AZUL, AZUL_CLARO,VERDE
+from core._colors import BRANCO, VERMELHO, AZUL, AZUL_CLARO,VERDE, PRETO
 from core.UI.button import Button
+from core.UI.square import Square
 
 class question:
     def __init__(self, text, options, correct=None, number=1):
@@ -25,13 +26,8 @@ class question:
         return self.get_selected() == self.correct_alternative
     
     def draw_question(self, screen):
-        quadro_surface = pygame.Surface((500, 250), pygame.SRCALPHA)
-        quadro_surface.fill(BRANCO)
-        screen.screen.blit(quadro_surface, (390, 15))
-
-        font = pygame.font.Font(None, 36)
-        text_surface = font.render(self.text, True, (0, 0, 0))
-        screen.screen.blit(text_surface, (390, 140))
+        quadro = Square(390, 15, 500, 250, self.text, BRANCO, PRETO)
+        screen.draw_button([quadro])
 
     def draw_options(self, screen):
         screen.draw_button(self.buttons_options)

@@ -1,21 +1,22 @@
 import pygame
 from core.screen import Screen
 from core.question import question
-from core._colors import AZUL, BRANCO, VERMELHO, translucent_color
+from core._colors import AZUL, BRANCO, VERMELHO, VERDE, translucent_color
 from core.UI.button import Button
 from core.UI.square import Square
 from screens.componentes_tela.buttons_jogar import buttons_perguntas
 from screens.componentes_tela.gerar_perguntas import gerar_perguntas
 
-def tela_termino(screen: Screen, acertos):
+def tela_termino(screen: Screen, acertos, modulo):
     BRANCO180 = translucent_color(BRANCO, 200)
     screen.filter(BRANCO180)
 
     text_final = f'Você acertou {acertos} de 10 perguntas!'
     quadro_final = Square(290, 240, 700, 250, text_final, VERMELHO)
+    texto_modulo = Square(540, 180, 200, 120, f"{modulo}", AZUL)
     retornar_button = Button(515, 400, 250, 60, "Retornar")
 
-    screen.draw_button([quadro_final, retornar_button])
+    screen.draw_button([quadro_final, retornar_button, texto_modulo])
 
     return retornar_button
 
@@ -25,8 +26,6 @@ def perguntas(args):
     
     if 'acertos' not in args:
         args['acertos'] = 0
-
-    acertos = args['acertos']
 
     if 'colors' not in args or args['colors'] is None:
         args['colors'] = [['', AZUL] for _ in range(10)]
@@ -53,15 +52,18 @@ def perguntas(args):
     running = True
 
     while running:
-        screen.draw_background()
-        questao.draw(screen)
-        
         if number == "0":
             modo_final = True
-            botao_retornar_final = tela_termino(screen, args['acertos'])
-            
+            botao_retornar_final = tela_termino(screen, args['acertos'], modulo)
 
-        botoes['numero'].set_text(f'{number}/10')
+            botoes = {}
+        else:
+            screen.draw_background()
+            questao.draw(screen)
+            
+                
+
+            botoes['numero'].set_text(f'{number}/10')
 
         # Eventos
         for event in pygame.event.get():

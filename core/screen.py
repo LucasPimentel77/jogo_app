@@ -1,5 +1,6 @@
 import pygame
 from core._colors import translucent_color, BRANCO
+from core.UI.button import Button
 
 branco_semi_transparente = translucent_color(BRANCO, 100)
 
@@ -42,7 +43,7 @@ class Screen:
         for botao in buttons:
             botao.update_hover(mouse_pos)
             botao.draw(self.screen)
-            if botao.rect.collidepoint(mouse_pos):
+            if botao.rect.collidepoint(mouse_pos) and isinstance(botao, Button):
                 cursor_sobre_botao = True
 
         pygame.mouse.set_cursor(

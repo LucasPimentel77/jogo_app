@@ -19,7 +19,11 @@ def set_text(categorias, buttons):
 def get_categorias(buttons, pos):
     for i in range(1, 5):
         if buttons[f"categoria{i}"].is_clicked(pos):
-            buttons[f"categoria{i}"].add_border(VERMELHO)
+
+            for j in range(1, 5):
+                buttons[f"categoria{j}"].remove_border()
+
+            buttons[f"categoria{i}"].add_border(VERMELHO, 3)
             return buttons[f"categoria{i}"].text
             
     

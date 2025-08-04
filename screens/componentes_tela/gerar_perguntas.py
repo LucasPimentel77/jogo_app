@@ -42,7 +42,7 @@ def gerar_perguntas(modulo):
     if modulo == 'Adição':
         resposta = a + b
 
-        text = f'qual o resultado de {a} + {b}?'
+        text = f'Qual o resultado de {a} + {b}?'
         options.append(str(resposta))
         
         while len(options) < 4:
@@ -58,7 +58,7 @@ def gerar_perguntas(modulo):
         a, b = ordena_valor(a, b)
         resposta = a - b
 
-        text = f'qual o resultado de {a} - {b}?'
+        text = f'Qual o resultado de {a} - {b}?'
         options.append(str(resposta))
             
         while len(options) < 4:
@@ -74,7 +74,7 @@ def gerar_perguntas(modulo):
     elif modulo == 'Multiplicação':
         resposta = c * d
 
-        text = f'qual o resultado de {c} * {d}?'
+        text = f'Qual o resultado de {c} * {d}?'
         options.append(str(resposta))
             
         while len(options) < 4:
@@ -90,7 +90,7 @@ def gerar_perguntas(modulo):
         resposta = d
         dividendo = c * d
 
-        text = f'qual o resultado de {dividendo} / {c}?'
+        text = f'Qual o resultado de {dividendo} / {c}?'
         options.append(str(resposta))
             
         while len(options) < 4:
