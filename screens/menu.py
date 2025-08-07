@@ -31,7 +31,7 @@ def tela_menu(args=None):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if jogar.is_clicked(event.pos):
                     print("Botão Jogar clicado!")
-                    return "jogar", None  # substitua por outra tela real quando tiver
+                    return "jogar", None  
                 elif aprender.is_clicked(event.pos):
                     print("Botão Aprender clicado!")
                     return "aprender", None
