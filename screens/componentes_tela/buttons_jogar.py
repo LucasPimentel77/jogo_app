@@ -5,9 +5,9 @@ from core._colors import VERDE, VERMELHO, AZUL_CLARO
 
 def get_categorias():
     return {
-        "fácil": [("➕", "Adição"), ("➖", "Subtração"), ("✖️", "Multiplicação"), ("➗", "Divisão")],
-        "médio": [("🔢", "Fração"), ("📏", "MMC"), ("🔀", "Regra de 3"), ("📊", "Porcentagem")],
-        "difícil": [("🎲", "Probabilidade"), ("📈", "Potencia"), ("📐", "Geometria plana"), ("📦", "Geometria espacial")]
+        "Fácil": [("➕", "Adição"), ("➖", "Subtração"), ("✖️", "Multiplicação"), ("➗", "Divisão")],
+        "Médio": [("🔢", "Fração"), ("📏", "MMC"), ("🔀", "Regra de 3"), ("📊", "Porcentagem")],
+        "Difícil": [("🎲", "Probabilidade"), ("📈", "Potencia"), ("📐", "Geometria plana"), ("📦", "Geometria espacial")]
     }
      
 

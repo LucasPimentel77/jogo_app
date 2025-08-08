@@ -24,7 +24,7 @@ def get_categorias(buttons, pos):
                 buttons[f"categoria{j}"].remove_border()
 
             buttons[f"categoria{i}"].add_border(VERMELHO, 3)
-            return buttons[f"categoria{i}"].text
+            return buttons[f"categoria{i}"].get_text()
             
     
 def jogar(args=None):
@@ -80,7 +80,7 @@ def jogar(args=None):
 
     
         # 🧠 Obter dificuldade atual e atualizar os botões de categoria
-        dificuldade = buttons["select_dificuldade"].get_selected().lower()
+        dificuldade = buttons["select_dificuldade"].get_selected()
         categorias_dificuldade = categorias.get(dificuldade, [])
         set_text(categorias_dificuldade, buttons)
 

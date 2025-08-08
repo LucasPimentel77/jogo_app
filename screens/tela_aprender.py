@@ -11,15 +11,16 @@ def aprender(args=None):
     while running:
         screen.draw_background()
 
-        # Atualizar a lista completa de botões (inclusive opções expandidas)
-        list_buttons = list(get_buttons_aprender().values())
+        buttons = get_buttons_aprender()
+        list_buttons = list(buttons.values())
 
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                pass
+                if buttons['retornar'].is_clicked(event.pos):
+                    return "menu", None
                 
 
 

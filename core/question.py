@@ -63,7 +63,7 @@ class question:
         
     def paint_correct(self):
         for option in self.buttons_options:
-            if option.text == self.correct_alternative:
+            if option.get_text() == self.correct_alternative:
                 option.bg_color = VERDE
 
     def paint_questions(self, options):

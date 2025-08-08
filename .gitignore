@@ -53,3 +53,5 @@ pip-log.txt
 build/
 dist/
 *.egg-info/
+
+teste.py
