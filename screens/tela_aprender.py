@@ -21,6 +21,8 @@ def aprender(args=None):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if buttons['retornar'].is_clicked(event.pos):
                     return "menu", None
+                if buttons['modulo0'].is_clicked(event.pos):
+                    return "adicao", {}
                 
 
 

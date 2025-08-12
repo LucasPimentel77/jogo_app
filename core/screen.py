@@ -9,6 +9,7 @@ class Screen:
         self.largura = 1280
         self.altura = 720
         self.titulo = titulo
+        self.fundo_path = fundo_path
         self.x = 0
         self.y = 0
 
@@ -16,7 +17,7 @@ class Screen:
         self.screen = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption(self.titulo)
 
-        self.fundo = pygame.image.load(fundo_path) if not fundo else fundo
+        self.fundo = pygame.image.load(self.fundo_path) if not fundo else fundo
         self.screen.blit(self.fundo, (0, 0))
         
     def config(self, x=0, y=0, largura=1280, altura=720):
@@ -25,7 +26,9 @@ class Screen:
         self.largura = largura
         self.altura = altura
 
-    def draw_background(self):
+    def draw_background(self, fundo_path=None):
+        if fundo_path:
+            self.fundo_path = fundo_path
         """Desenha o fundo da tela."""
         self.screen.blit(self.fundo, (0, 0))
 
