@@ -3,10 +3,11 @@ from core.text import Text
 from core._colors import AZUL, BRANCO, CINZA_CLARO, PRETO
 
 class Button:
-    def __init__(self, x, y, width, height, text, bg_color=AZUL, text_color=BRANCO):
+    def __init__(self, x, y, width, height, text, bg_color=AZUL, text_color=BRANCO, font_size=48):
         self.rect = pygame.Rect(x, y, width, height)
         self.bg_color = bg_color
         self.text_color = text_color
+        self.font_size = font_size
         self.original_text_color = text_color
         self.current_color = bg_color
         self.clicked = False
@@ -15,7 +16,7 @@ class Button:
         self.border_thickness = 0
 
         # Agora usamos Text para o conteúdo
-        self.text_obj = Text(self.rect.centerx, self.rect.centery, text, font_size=48, color=text_color)
+        self.text_obj = Text(self.rect.centerx, self.rect.centery, text, font_size=self.font_size, color=text_color)
         self.text_obj.fit_to_rect(self.rect)
     def set_text(self, text):
         self.text_obj.set_text(text)

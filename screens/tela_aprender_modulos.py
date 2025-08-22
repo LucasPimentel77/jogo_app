@@ -14,7 +14,7 @@ def tela_termino(screen: Screen, modulo):
     screen.filter(BRANCO180)
 
     text_final = f'Você completou o aprendizado de {modulo} !'
-    quadro_final = Square(240, 240, 800, 250, text_final, VERDE_CLARO, PRETO)
+    quadro_final = Square(240, 240, 800, 250, text_final, VERDE_CLARO, PRETO, )
     texto_modulo = Square(540, 180, 200, 120, f"{modulo}", AZUL)
     praticar_button = Button(410, 400, 200, 60, "Praticar")
     retornar_button = Button(670, 400, 200, 60, "Retornar")

@@ -76,6 +76,7 @@ class Text:
         if center_pos:
             text_rect = text_surface.get_rect(center=center_pos)
         else:
-            text_rect = text_surface.get_rect(center=(self.x, self.y))
+            text_rect = text_surface.get_rect(topleft=(self.x, self.y))
+
 
         screen.blit(text_surface, text_rect)

@@ -38,17 +38,23 @@ class Screen:
         filtro.fill(collor)
         self.screen.blit(filtro, (0, 0))
 
-    def draw_button(self, buttons):
-        #Desenha e atualiza todos os botões passados em uma lista.
+    def draw_button(self, widgets):
+        """Desenha e atualiza todos os widgets (botões, caixas, etc)."""
         mouse_pos = pygame.mouse.get_pos()
         cursor_sobre_botao = False
 
-        for botao in buttons:
-            botao.update_hover(mouse_pos)
-            botao.draw(self.screen)
-            if botao.rect.collidepoint(mouse_pos) and isinstance(botao, Button):
+        for widget in widgets:
+            # Só chama update_hover se o objeto tiver esse método
+            if hasattr(widget, "update_hover"):
+                widget.update_hover(mouse_pos)
+
+            widget.draw(self.screen)
+
+            # Só muda o cursor se for realmente um botão
+            if isinstance(widget, Button) and widget.rect.collidepoint(mouse_pos):
                 cursor_sobre_botao = True
 
         pygame.mouse.set_cursor(
             pygame.SYSTEM_CURSOR_HAND if cursor_sobre_botao else pygame.SYSTEM_CURSOR_ARROW
         )
+
